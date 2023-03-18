@@ -1,0 +1,1090 @@
+{%load static%}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>KRCT</title>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script> 
+<script src= https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css></script>
+<link rel="stylesheet" type="text/css" href="{%static 'css/style.css' %}">
+<script type="text/javascript">
+      function hide() {
+        setTimeout(() => {
+        const box = document.getElementById('box');
+        box.style.display = 'none';
+        }, 5000);
+      }
+
+if ( window.history.replaceState ) {
+  window.history.replaceState( null, null, window.location.href );
+}
+      </script>  
+</head>
+<body onload="load()">
+<div class="container ">
+    <form method="POST" enctype="multipart/form-data">
+        {%csrf_token%}
+        <div class="form shadow-lg p-3 mb-5 bg-body rounded">
+
+            <div class="right-side">
+                <div class="main active">
+                    <img class="img-fluid" src="{%static 'template1/assets/img/kr.png'%}" width="50px" height="50px">
+                    
+                        <h3>Your Personal Information</h3>
+                        
+                    
+                    
+                    <div class="input-text">
+                        {%if p.role%}
+                        <div class="input-div">
+                            <input type="text" required require id="user_name" name='post_applied' value="{{p.role}}">
+                        </div>
+
+                    {%else%}
+                    
+                        <div class="input-div">
+                            <select name="post_applied" required require>
+                            <option disabled selected value="">Post Applied For</option>
+                                <option value="Professor">Professor</option>
+                                <option value="Assistant Professor">Assistant Professor</option>
+                                <option value="Associate Professor">Associate Professor</option>
+
+                            </select>
+                        </div>
+                    {%endif%}
+
+                    {%if p.dept%}
+                        <div class="input-div"> 
+                            <select name="dept" >
+                            <option  value="{{p.dept}}">{{p.dept}}</option>
+                            </select>
+                        </div> 
+                    
+                    {%else%}
+                        <div class="input-div"> 
+                            <select name="dept" required require>
+                            <option disabled selected value="">Department</option>
+                                <option value="CSE">CSE</option>
+                                <option value="MECH">MECH</option>
+                                <option value="ECE">ECE</option>
+                                <option value="EEE">EEE</option>
+                                <option value="AIDS">AI-DS</option>
+                                <option value="CIVIL">CIVIL</option>
+
+                            </select>
+                        </div> 
+                    {%endif%}
+                        <div class="input-div"> 
+                            <input type="text" name="name" required require>
+                            <span>Name</span>
+                        </div>
+                    </div>
+                    <div class="input-text">
+                        <div class="input-div">
+                            <h6> D.O.B  </h6>
+                            <input type="date" name="dob" required require style="width: 300px;height: 40px;    width:100%;
+                                        height:40px;
+                                        border:none;
+                                        outline:0;
+                                        border-radius:5px;
+                                        border:1px solid #cbced4;
+                                        gap:20px;
+                                        box-sizing:border-box;
+                                        padding:0px 10px;">
+                            
+                        </div>
+                        <div class="input-div">
+                            <h6>E-mail Address</h6>
+                            <input type="email" name="email" required require id="email" style="width: 300px;height: 40px;    width:100%;
+                                        height:40px;
+                                        border:none;
+                                        outline:0;
+                                        border-radius:5px;
+                                        border:1px solid #cbced4;
+                                        gap:20px;
+                                        box-sizing:border-box;
+                                        padding:0px 10px;">
+
+                             
+                        </div>
+                    </div>
+                    <div class="input-text">
+                        
+                        <div class="input-div">
+                            <input type="text" name="phone" required require>
+                            <span> Phone No.  </span>
+                        </div>
+                        <div class="input-div">
+                            <input type="number" name="aadhar" min="0" required require style="width: 300px;height: 40px;    width:100%;
+                                        height:40px;
+                                        border:none;
+                                        outline:0;
+                                        border-radius:5px;
+                                        border:1px solid #cbced4;
+                                        gap:20px;
+                                        box-sizing:border-box;
+                                        padding:0px 10px;" onKeyPress="if(this.value.length==12) return false;">
+                            <span>Aadhar No.</span>
+                        </div>
+                        
+                        
+                        
+                            
+                    </div>
+                    <div class="buttons">
+                        <button class="next_button">Next Step</button>
+                    </div>
+                </div>
+            
+                <div class="main">
+                    <img class="img-fluid" src="{%static 'template1/assets/img/kr.png' %}" width="50px" height="50px">
+                    <div class="text">
+                        <h3>Your Personal Information</h3>
+                        
+                    </div>
+                    
+
+                    <div class="input-text">
+                        <div class="input-div">
+                            <input type="text" name="f_name" required require>
+                            <span>Father’s Name </span>
+                        </div>
+                        <div class="input-div"> 
+                            <input type="text" name="m_name" required require>
+                            <span>Mother’s Name </span>
+                        </div> 
+                        <div class="input-div"> 
+                        <input type="number" name="f_status" value=""  width="400px" style="width: 300px;height: 40px;    width:100%;
+                                        height:40px;
+                                        border:none;
+                                        outline:0;
+                                        border-radius:5px;
+                                        border:1px solid #cbced4;
+                                        gap:20px;
+                                        box-sizing:border-box;
+                                        padding:0px 10px;">
+                            <span>No.of Brothers & Sisters </span>
+                        </div>
+                    </div>
+                    <div class="input-text"> 
+
+                        <div class="input-div">
+                            <input type="text" name="f_occupation" value=""  >
+                            <span>Father’s Occupation</span>
+                        </div>
+                        <div class="input-div"> 
+                            <input type="text" name="m_occupation" value=""  >
+                            <span>Mother’s Occupation</span>
+                        </div> 
+                        <div class="input-div"> 
+                            <input type="text" name="b_occupation" value="" >
+                            <span>Brother’s / Sister’s Occupation </span>
+                        </div>
+                    </div> 
+                    <div class="input-text"> 
+
+                        <div class="input-div">
+                            <input type="text" name="religion" required require>
+                            <span> Religion </span>
+                        </div>
+                        <div class="input-div"> 
+                            <input type="text" name="community"  required require>
+                            <span>community</span>
+                        </div> 
+                        <div class="input-div"> 
+                            <input type="text" name="caste"  required require>
+                            <span>Caste/Sub Caste </span>
+                        </div>
+                    </div> 
+                    <div class="input-text"> 
+                        <div class="input-div">
+                      <label for="myCheck">Married:</label> 
+                     <input type="radio" id="myCheck" class='radio' value="Married" name='marital_status' onclick="myFunction()" required require>
+                    </div> 
+                    
+                        <div class="input-div">
+                        <label for="myCheck">Unmarried:</label> 
+                        <input type="radio" name='marital_status' value="Unmarried" class="radio" id="un" required require onclick="fun()">
+                    </div>
+                </div>
+                 <div id="text">
+                    <div class="input-text" id="text"> 
+
+                        <div class="input-div">
+                            <input type="text" name="s_name"  value=""  >
+                            <span>Spouse's Name </span>
+                        </div>
+                        <div class="input-div"> 
+                            <input type="text" name="s_qual" value="" >
+                            <span>Spouse's Qualification</span>
+                        </div> 
+                        <div class="input-div"> 
+                            <input type="text" name="s_occupation" value="" >
+                            <span>Spouse's Occupation </span>
+                        </div> 
+                        <div class="input-div"> 
+                            <input type="number" name="no_of_child"  value="" style="width: 300px;height: 40px;    width:100%;
+                                        height:40px;
+                                        border:none;
+                                        outline:0;
+                                        border-radius:5px;
+                                        border:1px solid #cbced4;
+                                        gap:20px;
+                                        box-sizing:border-box;
+                                        padding:0px 10px;">
+                            <span>No. of Children</span>
+                        </div>
+                    </div>
+                </div>
+                    <div class="input-text"> 
+                        <label>Address</label>
+                      <input type="text" class="form-control" id="address"  name="address" required require>
+                    </div>
+                    <div class="buttons button_space">
+                        <button class="back_button">Back</button>
+                        <button class="next_button" id="nb">Next Step</button>
+                    </div>
+                </div>
+                <div class="main">
+                    <img class="img-fluid" src="{%static 'template1/assets/img/kr.png' %}" width="50px" height="50px">
+                    <div class="text">
+                        <h2>Educational Qualifications</h2>
+
+                    </div><br>
+                    <div><center><strong>PhD</strong></center></div>
+                    <div class="input-text"> 
+                        
+                        <div class="input-div">
+                            <input type="text" name="phd_spec"  >
+                            <span> Specifications</span>
+                        </div>
+                        <div class="input-div"> 
+                            <input type="text" name="phd_inst" required require>
+                            <span>  Name of the Institution</span>
+                        </div> 
+                        <div class="input-div"> 
+                            <input type="text" name="phd_place" required require>
+                            <span> Name of the Place </span>
+                        </div>
+                        <div class="input-div"> 
+                            <input type="number" name="phd_yop" required require style="width: 300px;height: 40px;    width:100%;
+                                        height:40px;
+                                        border:none;
+                                        outline:0;
+                                        border-radius:5px;
+                                        border:1px solid #cbced4;
+                                        gap:20px;
+                                        box-sizing:border-box;
+                                        padding:0px 10px;">
+                            <span>Year of Passing</span>
+                        </div>
+                        <div class="input-div"> 
+                            <input type="number" name="phd_per" required require style="width: 300px;height: 40px;    width:100%;
+                                        height:40px;
+                                        border:none;
+                                        outline:0;
+                                        border-radius:5px;
+                                        border:1px solid #cbced4;
+                                        gap:20px;
+                                        box-sizing:border-box;
+                                        padding:0px 10px;">
+                            <span>% Of Marks obtained</span>
+                        </div> 
+                    </div> 
+                    <hr>
+                    <br>
+                    <div><center><strong>M.Phil.</strong></center></div>
+                    <div class="input-text"> 
+                        
+                        <div class="input-div">
+                            <input type="text" name="mphil_spec"  value="" >
+                            <span> Specifications</span>
+                        </div>
+                        <div class="input-div"> 
+                            <input type="text" name="mphil_inst"  value="" >
+                            <span>  Name of the Institution</span>
+                        </div> 
+                        <div class="input-div"> 
+                            <input type="text" name="mphil_place"  value="" >
+                            <span> Name of the Place </span>
+                        </div> 
+                        <div class="input-div"> 
+                            <input type="number" name="mphil_yop"  value="" style="width: 300px;height: 40px;    width:100%;
+                                        height:40px;
+                                        border:none;
+                                        outline:0;
+                                        border-radius:5px;
+                                        border:1px solid #cbced4;
+                                        gap:20px;
+                                        box-sizing:border-box;
+                                        padding:0px 10px;">
+                            <span>Year of Passing</span>
+                        </div>
+                        <div class="input-div"> 
+                            <input type="number" name="mphil_per"  value="" style="width: 300px;height: 40px;    width:100%;
+                                        height:40px;
+                                        border:none;
+                                        outline:0;
+                                        border-radius:5px;
+                                        border:1px solid #cbced4;
+                                        gap:20px;
+                                        box-sizing:border-box;
+                                        padding:0px 10px;">
+                            <span>% Of Marks obtained</span>
+                        </div> 
+                    </div>
+                    <hr> 
+                    <br>
+                    <div><center><strong>PG</strong></center></div>
+                    <div class="input-text"> 
+                        
+                        <div class="input-div">
+                            <input type="text" name="pg_spec"  value="" >
+                            <span> Specifications</span>
+                        </div>
+                        <div class="input-div"> 
+                            <input type="text" name="pg_inst"  value="" >
+                            <span>  Name of the Institution</span>
+                        </div> 
+                        <div class="input-div"> 
+                            <input type="text" name="pg_place"  value="" >
+                            <span> Name of the Place </span>
+                        </div> 
+                        <div class="input-div"> 
+                            <input type="number" name="pg_yop"  value="" style="width: 300px;height: 40px;    width:100%;
+                                        height:40px;
+                                        border:none;
+                                        outline:0;
+                                        border-radius:5px;
+                                        border:1px solid #cbced4;
+                                        gap:20px;
+                                        box-sizing:border-box;
+                                        padding:0px 10px;">
+                            <span>Year of Passing</span>
+                        </div>
+                        <div class="input-div"> 
+                            <input type="number" name="pg_per"  value="" style="width: 300px;height: 40px;    width:100%;
+                                        height:40px;
+                                        border:none;
+                                        outline:0;
+                                        border-radius:5px;
+                                        border:1px solid #cbced4;
+                                        gap:20px;
+                                        box-sizing:border-box;
+                                        padding:0px 10px;">
+                            <span>% Of Marks obtained</span>
+                        </div> 
+                    </div> 
+                    <hr>
+                    <br>
+                    <div><center><strong>UG</strong></center></div>
+                     <div class="input-text"> 
+                        
+                        <div class="input-div">
+                            <input type="text" name="ug_spec"  value="" >
+                            <span> Specifications</span>
+                        </div>
+                        <div class="input-div"> 
+                            <input type="text" name="ug_inst"  value="" >
+                            <span>  Name of the Institution</span>
+                        </div>
+                        <div class="input-div"> 
+                            <input type="text" name="ug_place"  value="" >
+                            <span> Name of the Place </span>
+                        </div> 
+                        <div class="input-div"> 
+                            <input type="number" name="ug_yop" value="" style="width: 300px;height: 40px;    width:100%;
+                                        height:40px;
+                                        border:none;
+                                        outline:0;
+                                        border-radius:5px;
+                                        border:1px solid #cbced4;
+                                        gap:20px;
+                                        box-sizing:border-box;
+                                        padding:0px 10px;">
+                            <span>Year of Passing</span>
+                        </div> 
+                        <div class="input-div"> 
+                            <input type="number" name="ug_per"  value="" style="width: 300px;height: 40px;    width:100%;
+                                        height:40px;
+                                        border:none;
+                                        outline:0;
+                                        border-radius:5px;
+                                        border:1px solid #cbced4;
+                                        gap:20px;
+                                        box-sizing:border-box;
+                                        padding:0px 10px;">
+                            <span>% Of Marks obtained</span>
+                        </div> 
+                    </div> 
+                    <hr>
+                    <br>
+                    <div><center><strong>Diploma</strong></center></div>
+                    <div class="input-text"> 
+                        
+                        <div class="input-div">
+                            <input type="text" name="diplamo_spec"  value="" >
+                            <span> Specifications</span>
+                        </div>
+                        <div class="input-div"> 
+                            <input type="text" name="diplamo_inst"  value="" >
+                            <span>  Name of the Institution</span>
+                        </div> 
+                        <div class="input-div"> 
+                            <input type="text" name="diplamo_place"  value="" >
+                            <span> Name of the Place </span>
+                        </div>
+                        <div class="input-div"> 
+                            <input type="number" name="diplamo_yop"  value="" style="width: 300px;height: 40px;    width:100%;
+                                        height:40px;
+                                        border:none;
+                                        outline:0;
+                                        border-radius:5px;
+                                        border:1px solid #cbced4;
+                                        gap:20px;
+                                        box-sizing:border-box;
+                                        padding:0px 10px;">
+                            <span>Year of Passing</span>
+                        </div>
+                        <div class="input-div"> 
+                            <input type="number" name="diplamo_per"  value="" style="width: 300px;height: 40px;    width:100%;
+                                        height:40px;
+                                        border:none;
+                                        outline:0;
+                                        border-radius:5px;
+                                        border:1px solid #cbced4;
+                                        gap:20px;
+                                        box-sizing:border-box;
+                                        padding:0px 10px;">
+                            <span>% Of Marks obtained</span>
+                        </div>
+                    </div> 
+                    <hr>
+                    <br>
+
+                    <div><center><strong>XII</strong></center></div>
+                    <div class="input-text"> 
+                        
+                        <div class="input-div">
+                            <input type="text" name="twelvth_spec"  value="" >
+                            <span> Specifications</span>
+                        </div>
+                        <div class="input-div"> 
+                            <input type="text" name="twelvth_inst"  value="" >
+                            <span>  Name of the Institution</span>
+                        </div> 
+                        <div class="input-div"> 
+                            <input type="text" name="twelvth_place"  value="" >
+                            <span> Name of the Place </span>
+                        </div> 
+                        <div class="input-div"> 
+                            <input type="number" name="twelvth_yop"  value="" style="width: 300px;height: 40px;    width:100%;
+                                        height:40px;
+                                        border:none;
+                                        outline:0;
+                                        border-radius:5px;
+                                        border:1px solid #cbced4;
+                                        gap:20px;
+                                        box-sizing:border-box;
+                                        padding:0px 10px;">
+                            <span>Year of Passing</span>
+                        </div>
+                        <div class="input-div"> 
+                            <input type="number" name="twelvth_per"  value="" style="width: 300px;height: 40px;    width:100%;
+                                        height:40px;
+                                        border:none;
+                                        outline:0;
+                                        border-radius:5px;
+                                        border:1px solid #cbced4;
+                                        gap:20px;
+                                        box-sizing:border-box;
+                                        padding:0px 10px;">
+                            <span>% Of Marks obtained</span>
+                        </div> 
+                    </div> 
+ 
+                    <br>
+                    <hr>
+                    <div><center><strong>X</strong></center></div>
+                                        <div class="input-text"> 
+                        
+                        <div class="input-div">
+                            <input type="text" name="tenth_spec"  value="" >
+                            <span> Specifications</span>
+                        </div>
+                        <div class="input-div"> 
+                            <input type="text" name="tenth_inst"  value="" >
+                            <span>  Name of the Institution</span>
+                        </div>  
+                        <div class="input-div"> 
+                            <input type="text" name="tenth_place"  value="" >
+                            <span> Name of the Place </span>
+                        </div> 
+                        <div class="input-div"> 
+                            <input type="number" name="tenth_yop"  value="" style="width: 300px;height: 40px;    width:100%;
+                                        height:40px;
+                                        border:none;
+                                        outline:0;
+                                        border-radius:5px;
+                                        border:1px solid #cbced4;
+                                        gap:20px;
+                                        box-sizing:border-box;
+                                        padding:0px 10px;">
+                            <span>Year of Passing</span>
+                        </div>
+                        <div class="input-div"> 
+                            <input type="number" name="tenth_per"  value="" style="width: 300px;height: 40px;    width:100%;
+                                        height:40px;
+                                        border:none;
+                                        outline:0;
+                                        border-radius:5px;
+                                        border:1px solid #cbced4;
+                                        gap:20px;
+                                        box-sizing:border-box;
+                                        padding:0px 10px;">
+                            <span>% Of Marks obtained</span>
+                        </div>  
+                    </div> 
+
+                    <div class="buttons button_space">
+                        <button class="back_button">Back</button>
+                        <button class="next_button">Next Step</button>
+                    </div>
+                    </div>  
+               
+                <div class="main">
+                    <img class="img-fluid" src="{%static 'template1/assets/img/kr.png' %}" width="50px" height="50px"> 
+                    <div class="text">
+                        <h2>Research Details</h2>
+
+                    </div><br>
+                    <div class="shadow-lg p-3 mb-5 bg-white rounded"><center><strong>Journal Publication</strong></center>
+                    <div class="input-text"> 
+                        
+                        <div class="input-div">
+                            
+                                <label>Author</label>
+                                    <input type="text" name="j_author" value="" style="width: 300px;height: 40px;    width:100%;
+                                        height:40px;
+                                        border:none;
+                                        outline:0;
+                                        border-radius:5px;
+                                        border:1px solid #cbced4;
+                                        gap:20px;
+                                        box-sizing:border-box;
+                                        padding:0px 10px;">
+                            
+                        </div>
+                        <div class="input-div">
+                            
+                                <label>Title</label>
+                                  <input type="text" name="j_title" value="" style="width: 300px;height: 40px;    width:100%;
+                                        height:40px;
+                                        border:none;
+                                        outline:0;
+                                        border-radius:5px;
+                                        border:1px solid #cbced4;
+                                        gap:20px;
+                                        box-sizing:border-box;
+                                        padding:0px 10px;"> 
+                                    
+                                
+                            </div>
+                        <div class="input-div">
+                            
+                                <label>Journal Name</label>
+                                  <input type="text" name="j_name" value="" style="width: 300px;height: 40px;    width:100%;
+                                        height:40px;
+                                        border:none;
+                                        outline:0;
+                                        border-radius:5px;
+                                        border:1px solid #cbced4;
+                                        gap:20px;
+                                        box-sizing:border-box;
+                                        padding:0px 10px;">
+                                    
+                                
+                            </div><a href="javascript:void(0);" class="add_button" title="Add field"><img src="{%static 'template1/assets/img/plus.png'%}"></a><br><br>
+                        </div> 
+                        <div class="input-div"><div class="field_wrapper"></div></div></div>
+                        <hr>
+                    <div class="shadow-lg p-3 mb-5 bg-white rounded"><center><strong>Conference</strong></center>
+                    <div class="input-text"> 
+                        
+                        <div class="input-div">
+                            
+                                <label>Author</label>
+                                    <input type="text" name="c_author" value="" style="width: 300px;height: 40px;    width:100%;
+                                        height:40px;
+                                        border:none;
+                                        outline:0;
+                                        border-radius:5px;
+                                        border:1px solid #cbced4;
+                                        gap:20px;
+                                        box-sizing:border-box;
+                                        padding:0px 10px;">
+                            
+                        </div>
+                        <div class="input-div">
+                            
+                                <label>Title</label>
+                                  <input type="text" name="c_title" value="" style="width: 300px;height: 40px;    width:100%;
+                                        height:40px;
+                                        border:none;
+                                        outline:0;
+                                        border-radius:5px;
+                                        border:1px solid #cbced4;
+                                        gap:20px;
+                                        box-sizing:border-box;
+                                        padding:0px 10px;">
+                                    
+                                
+                            </div>
+                        <div class="input-div">
+                            
+                                <label>Conference Name</label>
+                                  <input type="text" name="c_name" value="" style="width: 300px;height: 40px;    width:100%;
+                                        height:40px;
+                                        border:none;
+                                        outline:0;
+                                        border-radius:5px;
+                                        border:1px solid #cbced4;
+                                        gap:20px;
+                                        box-sizing:border-box;
+                                        padding:0px 10px;">
+                                    
+                                
+                            </div><a href="javascript:void(0);" class="add2_button" title="Add field"><img src="{%static 'template1/assets/img/plus.png'%}"></a><br><br>
+                        </div> 
+                        <div class="input-div"><div class="fieldd_wrapper"></div></div>
+                        <hr></div>
+                    <div class="shadow-lg p-3 mb-5 bg-white rounded"><center><strong>Patent Details</strong></center>
+                    <div class="input-text"> 
+                        
+                        <div class="input-div">
+                            
+                                <label>Author</label>
+                                    <input type="text" name="p_author" value="" style="width: 300px;height: 40px;    width:100%;
+                                        height:40px;
+                                        border:none;
+                                        outline:0;
+                                        border-radius:5px;
+                                        border:1px solid #cbced4;
+                                        gap:20px;
+                                        box-sizing:border-box;
+                                        padding:0px 10px;">
+                            
+                        </div>
+                        <div class="input-div">
+                            
+                                <label>Title</label>
+                                  <input type="text" name="p_title" value="" style="width: 300px;height: 40px;    width:100%;
+                                        height:40px;
+                                        border:none;
+                                        outline:0;
+                                        border-radius:5px;
+                                        border:1px solid #cbced4;
+                                        gap:20px;
+                                        box-sizing:border-box;
+                                        padding:0px 10px;">
+                                    
+                                
+                            </div>
+                        <div class="input-div">
+                            
+                            <select name="p_status"  style="margin-top:24px;">
+                            <option disabled selected value="">Status</option>
+                                <option value="Filed">Filed</option>
+                                <option value="Published">Published</option>
+                                <option value="Granted">Granted</option>
+
+
+                            </select>
+
+                                    
+                                
+                            </div><a href="javascript:void(0);" class="add3_button" title="Add field"><img src="{%static 'template1/assets/img/plus.png'%}"></a><br><br>
+                        </div> 
+                        <div class="input-div"><div class="fielddd_wrapper"></div></div></div>
+
+
+                    <div class="buttons button_space">
+                        <button class="back_button">Back</button>
+                        <button name='sub'class="next_button">Next Step</button>
+                    </div> 
+
+                    </div>  
+               
+                
+                <div class="main">
+                    <img class="img-fluid" src="{%static 'template1/assets/img/kr.png' %}" width="50px" height="50px">
+                    <div class="input-text"> 
+                        <label>Additional Qualification if any</label>
+                      <textarea class="form-control" id="address" rows="2" value="" name="addon_qual"></textarea>
+                    </div>
+                    <div><strong>Previous Experience</strong></div>
+                    <div class="input-text"> 
+                        
+                        <div class="input-div">
+                            <input type="number" name="ug_exp" required require style="width: 300px;height: 40px;    width:100%;
+                                        height:40px;
+                                        border:none;
+                                        outline:0;
+                                        border-radius:5px;
+                                        border:1px solid #cbced4;
+                                        gap:20px;
+                                        box-sizing:border-box;
+                                        padding:0px 10px;">
+                            <span> UG</span>
+                        </div> 
+                    </div> 
+                    <div class="input-text"> 
+                        <div class="input-div"> 
+                            <input type="number" name="pg_exp" required require style="width: 300px;height: 40px;    width:100%;
+                                        height:40px;
+                                        border:none;
+                                        outline:0;
+                                        border-radius:5px;
+                                        border:1px solid #cbced4;
+                                        gap:20px;
+                                        box-sizing:border-box;
+                                        padding:0px 10px;">
+                            <span>PG</span>
+                        </div>  
+                    </div> 
+                    <div class="input-text"> 
+                        <div class="input-div"> 
+                            <input type="number" name="phd_exp" required require style="width: 300px;height: 40px;    width:100%;
+                                        height:40px;
+                                        border:none;
+                                        outline:0;
+                                        border-radius:5px;
+                                        border:1px solid #cbced4;
+                                        gap:20px;
+                                        box-sizing:border-box;
+                                        padding:0px 10px;">
+                            <span>PhD </span>
+                        </div> 
+                    </div> 
+                    <div class="input-text"> 
+                        <div class="input-div"> 
+                            <input type="number" name="total_exp" required require style="width: 300px;height: 40px;    width:100%;
+                                        height:40px;
+                                        border:none;
+                                        outline:0;
+                                        border-radius:5px;
+                                        border:1px solid #cbced4;
+                                        gap:20px;
+                                        box-sizing:border-box;
+                                        padding:0px 10px;">
+                            <span>TOTAL</span>
+                        </div> 
+
+
+                    </div> 
+                    <strong> Salary Expected   </strong>
+                    <div class="input-text">
+                            
+                            <input type="number" name="salary" required require style="width: 300px;height: 40px;    width:100%;
+                                        height:40px;
+                                        border:none;
+                                        outline:0;
+                                        border-radius:5px;
+                                        border:1px solid #cbced4;
+                                        gap:20px;
+                                        box-sizing:border-box;
+                                        padding:0px 10px;">
+                            
+                    </div> 
+                    <strong>Profile Picture</strong>
+                    <div class="input-text">
+                            
+                            <input type="file" name="pic" accept="image/*" required require>
+                            
+                    </div> 
+                    <div>
+                        <p>
+                             <h4 style="position: relative;left: 25px;">Terms and Conditions:</h4>
+          
+  <ol>
+    <li>
+          Minimum of 2 years stay in the college is expected. However, they can be relieved immediately<br>
+        for Govt.Job if they submit proof.
+
+    </li><br>
+    <li>If you resign in the middle of the academic year, you must pay 3 months' salary </li>
+  </ol> 
+  <h4 style="position: relative;left: 25px;">Additional terms and conditions from Ph.D. Holders:</h4> 
+  <ol>
+    <li> Minimum one patent to be filled every year.</li><br>
+    <li>Minimum two papers are to be published every year in SCI/SCIE indexed Journals.</li><br> 
+    <li> Minimum three proposals seeking financial assistants are to be submitted every year to funding<br> agencies and at least one of the proposals shall be taken to the level of presentation. A revenue<br> of Rs. 50,000 shall be granted through Consultancy, if no funding proposal reaches the level <br>of presentation</li>
+  </ol><br>
+                        </p>
+                    </div>
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" value="" id="terms" onchange="activateButton(this)">
+  <label class="form-check-label" for="defaultCheck1">
+    I Agree to the terms and coditions
+  </label>
+</div><br>
+                    <div class="buttons button_space">
+                        <button class="back_button">Back</button>
+                        <button class="submit_button" name='submit'>Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+    var next_click=document.querySelectorAll(".next_button");
+var main_form=document.querySelectorAll(".main");
+var step_list = document.querySelectorAll(".progress-bar li");
+var num = document.querySelector(".step-number");
+let formnumber=0;
+
+next_click.forEach(function(next_click_form){ 
+
+
+    next_click_form.addEventListener('click',function(){
+        var x=document.getElementById("email").value;  
+        var atposition=x.indexOf("@");  
+        var dotposition=x.lastIndexOf(".");  
+        if (atposition<1 || dotposition<atposition+2 || dotposition+2>=x.length){  
+            
+          return false;  
+          } 
+        if(!validateform() ){
+            return false
+        } 
+ 
+       formnumber++;
+       updateform();
+       progress_forward();
+       contentchange();
+    });
+}); 
+
+var back_click=document.querySelectorAll(".back_button");
+back_click.forEach(function(back_click_form){
+    back_click_form.addEventListener('click',function(){
+       formnumber--;
+       updateform();
+       progress_backward();
+       contentchange();
+    });
+});
+
+var username=document.querySelector("#user_name");
+var shownname=document.querySelector(".shown_name");
+ 
+
+var submit_click=document.querySelectorAll(".submit_button");
+submit_click.forEach(function(submit_click_form){
+    submit_click_form.addEventListener('click',function(){ 
+        
+        if(!validateform()){
+            return false
+        }
+       else{
+       shownname.innerHTML= username.value;
+       formnumber++;
+       updateform();
+       } 
+    });
+});
+
+
+ 
+
+function updateform(){
+    main_form.forEach(function(mainform_number){
+        mainform_number.classList.remove('active');
+    })
+    main_form[formnumber].classList.add('active');
+} 
+ 
+function progress_forward(){
+    // step_list.forEach(list => {
+        
+    //     list.classList.remove('active');
+         
+    // }); 
+    
+     
+    num.innerHTML = formnumber+1;
+    step_list[formnumber].classList.add('active');
+}  
+
+function progress_backward(){
+    var form_num = formnumber+1;
+    step_list[form_num].classList.remove('active');
+    num.innerHTML = form_num;
+} 
+ 
+var step_num_content=document.querySelectorAll(".step-number-content");
+
+ function contentchange(){
+     step_num_content.forEach(function(content){
+        content.classList.remove('active'); 
+        content.classList.add('d-none');
+     }); 
+     step_num_content[formnumber].classList.add('active');
+ } 
+ var un = document.getElementById("un");
+ var ma = document.getElementById("myCheck");
+ 
+function validateform(){
+    validate=true;
+    var validate_inputs=document.querySelectorAll(".main.active input");
+    validate_inputs.forEach(function(vaildate_input){
+        vaildate_input.classList.remove('warning');
+        if(vaildate_input.hasAttribute('require')){
+            if(vaildate_input.value.length==0){
+                validate=false;
+                vaildate_input.classList.add('warning');
+            }
+        }
+    });
+    return validate;
+    
+}  
+
+function myFunction() {
+  var checkBox = document.getElementById("myCheck");
+  var text = document.getElementById("text");
+  if (checkBox.checked == true){
+    text.style.display="block";
+    document.querySelector("#nb").style.display = "block";
+  } else {
+     text.style.display = "none";
+  }
+}
+
+
+
+
+function load(){
+    
+    var di =  document.getElementById("text");
+    di.style.display = "none";
+
+
+
+
+    document.querySelector(".submit_button").style.display = "none";
+    document.querySelector("#nb").style.display = "none";
+
+
+
+
+  }
+    function activateButton(element) {
+
+      if(element.checked) {
+        document.querySelector(".submit_button").style.display = "block";
+        
+       }
+       else  {
+        document.querySelector(".submit_button").style.display="none";
+    
+      }
+
+  } 
+  function fun() {
+  var checkBox = document.getElementById("un");
+  var text = document.getElementById("text");
+  if (checkBox.checked == true){
+    text.style.display="none"; 
+    document.querySelector("#nb").style.display = "block";
+  } 
+}
+function stop() {
+        var ma = document.getElementById("myCheck");
+    var un = document.getElementById("un");
+   if(un.checked==false && ma.checked==false){
+            formnumber=0;
+   }
+}
+$(document).ready(function(){
+    var maxField = 10; //Input fields increment limitation
+    var addButton = $('.add_button'); //Add button selector
+    var wrapper = $('.field_wrapper'); //Input field wrapper
+    var fieldHTML = '<div class="input-text"><div class="input-div"><label>Author</label><input type="text" name="j_author" value="" style="width: 300px;height: 40px;    width:100;height:40px;border:none;outline:0;border-radius:5px;border:1px solid #cbced4;gap:20px;box-sizing:border-box;padding:0px 10px;"></div><div class="input-div"><label>Title</label><input type="text" name="j_title" value="" style="width: 300px;height: 40px;    width:100%;height:40px;border:none;outline:0;border-radius:5px;border:1px solid #cbced4;gap:20px;box-sizing:border-box;padding:0px 10px;"></div><div class="input-div"><label>Journal Name</label><input type="text" name="j_name" value="" style="width: 300px;height: 40px;    width:100%;height:40px;border:none;outline:0;border-radius:5px;border:1px solid #cbced4;gap:20px;box-sizing:border-box;padding:0px 10px;"></div><a href="javascript:void(0);" class="remove_button" title="Remove field"><img src="{%static 'template1/assets/img/minus.png '%}" style="width:25px;"></a></div> '; //New input field html 
+    var x = 1; //Initial field counter is 1
+    
+    //Once add button is clicked
+    $(addButton).click(function(){
+        //Check maximum number of input fields
+        if(x < maxField){ 
+            x++; //Increment field counter
+            $(wrapper).append(fieldHTML); //Add field html
+        }
+    });
+    
+    //Once remove button is clicked
+    $(wrapper).on('click', '.remove_button', function(e){
+        e.preventDefault();
+        $(this).parent('div').remove(); //Remove field html
+        x--; //Decrement field counter
+    });
+});
+$(document).ready(function(){
+    var maxField = 10; //Input fields increment limitation
+    var addButton = $('.add2_button'); //Add button selector
+    var wrapper = $('.fieldd_wrapper'); //Input field wrapper
+    var fieldHTML = '<div class="input-text"><div class="input-div"><label>Author</label><input type="text" name="c_author" value="" style="width: 300px;height: 40px;    width:100;height:40px;border:none;outline:0;border-radius:5px;border:1px solid #cbced4;gap:20px;box-sizing:border-box;padding:0px 10px;"></div><div class="input-div"><label>Title</label><input type="text" name="c_title" value="" style="width: 300px;height: 40px;    width:100%;height:40px;border:none;outline:0;border-radius:5px;border:1px solid #cbced4;gap:20px;box-sizing:border-box;padding:0px 10px;"></div><div class="input-div"><label>Journal Name</label><input type="text" name="c_name" value="" style="width: 300px;height: 40px;    width:100%;height:40px;border:none;outline:0;border-radius:5px;border:1px solid #cbced4;gap:20px;box-sizing:border-box;padding:0px 10px;"></div><a href="javascript:void(0);" class="remove2_button" title="Remove field"><img src="{%static 'template1/assets/img/minus.png '%}" style="width:25px;"></a></div> '; //New input field html 
+    var x = 1; //Initial field counter is 1
+    
+    //Once add button is clicked
+    $(addButton).click(function(){
+        //Check maximum number of input fields
+        if(x < maxField){ 
+            x++; //Increment field counter
+            $(wrapper).append(fieldHTML); //Add field html
+        }
+    });
+    
+    //Once remove button is clicked
+    $(wrapper).on('click', '.remove2_button', function(e){
+        e.preventDefault();
+        $(this).parent('div').remove(); //Remove field html
+        x--; //Decrement field counter
+    });
+});
+$(document).ready(function(){
+    var maxField = 10; //Input fields increment limitation
+    var addButton = $('.add3_button'); //Add button selector
+    var wrapper = $('.fielddd_wrapper'); //Input field wrapper
+    var fieldHTML = '<div class="input-text"><div class="input-div"><label>Author</label><input type="text" name="p_author" value="" style="width: 300px;height: 40px;    width:100;height:40px;border:none;outline:0;border-radius:5px;border:1px solid #cbced4;gap:20px;box-sizing:border-box;padding:0px 10px;"></div><div class="input-div"><label>Title</label><input type="text" name="p_title" value="" style="width: 300px;height: 40px;    width:100%;height:40px;border:none;outline:0;border-radius:5px;border:1px solid #cbced4;gap:20px;box-sizing:border-box;padding:0px 10px;"></div><div class="input-div"><select name="p_status"  style="margin-top:24px;"><option disabled selected value="">Status</option><option value="Filed">Filed</option><option value="Published">Published</option><option value="Granted">Granted</option></select></div><a href="javascript:void(0);" class="remove3_button" title="Remove field"><img src="{%static 'template1/assets/img/minus.png '%}" style="width:25px;"></a></div> '; //New input field html 
+    var x = 1; //Initial field counter is 1
+    
+    //Once add button is clicked
+    $(addButton).click(function(){
+        //Check maximum number of input fields
+        if(x < maxField){ 
+            x++; //Increment field counter
+            $(wrapper).append(fieldHTML); //Add field html
+        }
+    });
+    
+    //Once remove button is clicked
+    $(wrapper).on('click', '.remove3_button', function(e){
+        e.preventDefault();
+        $(this).parent('div').remove(); //Remove field html
+        x--; //Decrement field counter
+    });
+});
+</script>
+
+</script>
+</body>
+</html>
